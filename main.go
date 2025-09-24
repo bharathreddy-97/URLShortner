@@ -22,7 +22,9 @@ func main() {
 
 func initailizeServer() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/{id}", httphandlers.ShortenURL)
+	mux.HandleFunc("/add", httphandlers.ShortenURL)
+	mux.HandleFunc("/metrics", httphandlers.GetMetrics)
+	mux.HandleFunc("/{id}", httphandlers.RedirectURL)
 
-	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("BASE_URL"), os.Getenv("PORT")), mux)
+	http.ListenAndServe(fmt.Sprintf("%s:%s", os.Getenv("BASE_URL"), os.Getenv("PORT")), httphandlers.Middleware(mux))
 }
