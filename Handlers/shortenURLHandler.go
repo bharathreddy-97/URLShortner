@@ -17,7 +17,7 @@ type Handlers struct {
 
 func (h *Handlers) ShortenURL(rw http.ResponseWriter, r *http.Request) {
 	requestBody, errString := parseRequest(r)
-	if errString != "" {
+	if errString != "" || requestBody == nil {
 		handleError(rw, errString)
 		return
 	}

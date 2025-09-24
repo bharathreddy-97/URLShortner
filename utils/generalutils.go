@@ -19,8 +19,11 @@ func CreateShortURL(url string, dataMap *persistence.SMap) string {
 	}
 
 	randomShortURL := randomCode(5)
-
-	//TODO: should check if there is a duplicate short code....
+	isDuplicate := dataMap.CheckForId(randomShortURL)
+	for isDuplicate {
+		randomShortURL = randomCode(5)
+		isDuplicate = dataMap.CheckForId(randomShortURL)
+	}
 	dataMap.Set(url, randomShortURL)
 
 	return randomShortURL
