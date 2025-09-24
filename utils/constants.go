@@ -3,6 +3,7 @@ package utils
 const (
 	E001 = "E001"
 	E002 = "E002"
+	E003 = "E003"
 )
 
 var errorDetailsMap = map[string]map[string]interface{}{
@@ -19,4 +20,13 @@ var errorDetailsMap = map[string]map[string]interface{}{
 		"statusMessage": "Bad Request",
 		"statusCode":    400,
 	},
+
+	E003: {
+		"code":          "E003",
+		"errorMessage":  "validation error: invalid url",
+		"statusMessage": "Bad Request",
+		"statusCode":    400,
+	},
 }
+
+const allowedLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

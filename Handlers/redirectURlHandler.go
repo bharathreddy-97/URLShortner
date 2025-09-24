@@ -2,6 +2,6 @@ package httphandlers
 
 import "net/http"
 
-func RedirectURL(rw http.ResponseWriter, r *http.Request) {
+func (h *Handlers) RedirectURL(rw http.ResponseWriter, r *http.Request) {
 
 }

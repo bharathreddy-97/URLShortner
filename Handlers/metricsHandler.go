@@ -2,6 +2,6 @@ package httphandlers
 
 import "net/http"
 
-func GetMetrics(rw http.ResponseWriter, r *http.Request) {
+func (h *Handlers) GetMetrics(rw http.ResponseWriter, r *http.Request) {
 
 }
