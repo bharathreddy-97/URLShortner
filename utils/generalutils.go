@@ -7,12 +7,6 @@ import (
 	persistence "github.com/bharathreddy-97/URLShortner/Persistence"
 )
 
-func ReturnHost(url string) string {
-	r := regexp.MustCompile(`/`)
-
-	return r.Split(url, -1)[2]
-}
-
 func CreateShortURL(url string, dataMap *persistence.SMap) string {
 	if shortURLFound := dataMap.Get(url); shortURLFound != "" {
 		return shortURLFound
@@ -31,7 +25,7 @@ func CreateShortURL(url string, dataMap *persistence.SMap) string {
 
 func randomCode(n int) string {
 	output := ""
-	for i := 0; i < n; i++ {
+	for range n {
 		output = output + string(allowedLetters[rand.Intn(len(allowedLetters))])
 	}
 
@@ -41,4 +35,9 @@ func randomCode(n int) string {
 func GetMetrics(dataMap *persistence.SMap) map[string]int64 {
 	hostLinksMap := make(map[string]int64)
 	return hostLinksMap
+}
+
+func CheckForValidShortURL(id string) bool {
+	re := regexp.MustCompile(`[a-zA-Z0-9]{5}`)
+	return re.MatchString(id)
 }

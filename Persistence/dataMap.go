@@ -1,6 +1,7 @@
 package persistence
 
 import (
+	"regexp"
 	"sync"
 )
 
@@ -35,4 +36,33 @@ func (s *SMap) CheckForId(id string) bool {
 	defer s.m.Unlock()
 	_, ok := s.listOfIds[id]
 	return ok
+}
+
+func ReturnOriginalURL(dataMap *SMap, id string) string {
+	dataMap.m.Lock()
+	defer dataMap.m.Unlock()
+	for key, value := range dataMap.data {
+		if value == id {
+			return key
+		}
+	}
+	return ""
+}
+
+// func (s *SMap) GetTopMetrics() map[string]int64 {
+// 	s.m.Lock()
+// 	defer s.m.Unlock()
+
+// 	keys := make([]string, 0, len(s.data))
+// 	for k := range s.data {
+// 		keys = append(keys, k)
+// 	}
+
+// 	return metricsMap
+// }
+
+func returnHost(url string) string {
+	r := regexp.MustCompile(`/`)
+
+	return r.Split(url, -1)[2]
 }

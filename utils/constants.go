@@ -4,6 +4,8 @@ const (
 	E001 = "E001"
 	E002 = "E002"
 	E003 = "E003"
+	E004 = "E004"
+	E005 = "E005"
 )
 
 var errorDetailsMap = map[string]map[string]interface{}{
@@ -24,6 +26,20 @@ var errorDetailsMap = map[string]map[string]interface{}{
 	E003: {
 		"code":          "E003",
 		"errorMessage":  "validation error: invalid url",
+		"statusMessage": "Bad Request",
+		"statusCode":    400,
+	},
+
+	E004: {
+		"code":          "E004",
+		"errorMessage":  "validation error: invalid short url in the request",
+		"statusMessage": "Bad Request",
+		"statusCode":    400,
+	},
+
+	E005: {
+		"code":          "E005",
+		"errorMessage":  "invalid short url",
 		"statusMessage": "Bad Request",
 		"statusCode":    400,
 	},
